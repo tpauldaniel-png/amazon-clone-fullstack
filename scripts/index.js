@@ -21,6 +21,25 @@ products.forEach((product) => {
                             ₹${product.price}
                         </div>
 
+
+                        <div class="quantity-selector">
+                            <select class="js-quantity-selector-${product.id}">
+                                <option selected value="1">1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </select>
+                        </div>
+
+                        <div class="js-confirmation-message-${product.id}">   
+                        </div>
+
                         <div class="add-to-cart">
                             <button class="add-to-cart-button js-add-to-cart-button" data-product-id="${product.id}">Add to cart</button>
                         </div>
@@ -28,6 +47,7 @@ products.forEach((product) => {
 });
 
 document.querySelector('.js-products-grid').innerHTML = productHTML;
+
 
 
 document.querySelectorAll('.js-add-to-cart-button').forEach((button) => {
@@ -41,12 +61,18 @@ document.querySelectorAll('.js-add-to-cart-button').forEach((button) => {
             }
         });
 
+
+        const quantitySelector = document.querySelector(`.js-quantity-selector-${productId}`)
+
+        const quantity = Number(quantitySelector.value);
+
+
         if (matchingItem) {
-            matchingItem.quantity += 1;
+            matchingItem.quantity += quantity;
         } else {
             cart.push({
                 productId: productId,
-                quantity: 1
+                quantity: quantity
             });
 
         }
@@ -57,7 +83,11 @@ document.querySelectorAll('.js-add-to-cart-button').forEach((button) => {
         });
 
         document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
-    
+        
+        
+      
+
     });
 
 });
+

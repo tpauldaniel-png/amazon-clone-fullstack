@@ -1,3 +1,4 @@
+
 .main {
     margin-top: 50px;
 }
@@ -75,3 +76,8 @@
     background-color: rgba(194, 178, 3, 0.956);
 }
 
+
+.quantity-selector {
+    text-align: center;
+    padding: 5px;
+}
