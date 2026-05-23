@@ -125,3 +125,39 @@
     padding: 2px;
 }
 
+
+.quantity-input {
+    width: 30px;
+    display: none;
+}
+
+.link-save {
+    display: none;
+}
+
+.editing-cart-quantity .quantity-input {
+    display:initial;
+}
+
+.editing-cart-quantity .link-save {
+    display:initial;
+    cursor: pointer;
+}
+
+.editing-cart-quantity .link-update {
+    display: none;
+}
+
+.editing-cart-quantity .quantity-nos {
+    display: none;
+}
+
+
+
+.link-save {
+    color:rgb(45, 169, 231);
+}
+
+.link-save:hover {
+    color:rgb(45, 169, 231);
+}
