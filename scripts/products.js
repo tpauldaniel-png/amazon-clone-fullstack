@@ -1,5 +1,5 @@
 export const products = [{
-    id: crypto.randomUUID(),
+    id: "product-1",
     image: "/images/product_images/atomberg-fan-1200mm.jpg",
     name: "Atomberg Renesa 1200mm BLDC Ceiling Fan",
     rating : {
@@ -9,7 +9,7 @@ export const products = [{
     price: 4590
 },
 {
-    id: crypto.randomUUID(),
+    id: "product-2",
     image: "/images/product_images/blue-star-ac.jpg",
     name: "Blue Star Split Air Conditioner 1.5 Ton",
     rating: {
@@ -19,7 +19,7 @@ export const products = [{
     price: 45000
 },
 {
-    id: crypto.randomUUID(),
+    id: "product-3",
     image: "/images/product_images/whirlpool-fridge-5star.jpg",
     name: "Whirlpool 192L 5Star Single Door Refrigerator",
     rating: {
@@ -29,7 +29,7 @@ export const products = [{
     price: 28650
 },
 {
-    id: crypto.randomUUID(),
+    id: "product-4",
     image: "/images/product_images/samsung-tv.jpg",
     name: "Samsung Crystal Uhd Smart Tv - 44 Inch Display",
     rating: {
@@ -39,7 +39,7 @@ export const products = [{
     price: 96000
 },
 {
-    id: crypto.randomUUID(),
+    id: "product-5",
     image: "/images/product_images/mixer-grinder.jpg",
     name: "Mixer Grinder - Capacity: 5 Kg/hr",
     rating: {
@@ -49,7 +49,7 @@ export const products = [{
     price: 7320
 },
 {
-    id: crypto.randomUUID(),
+    id: "product-6",
     image: "/images/product_images/iron-box.jpg",
     name: "Silverstar 120V / 220V Iron Box",
     rating: {
@@ -59,7 +59,7 @@ export const products = [{
     price: 1900
 },
 {
-    id: crypto.randomUUID(),
+    id: "product-7",
     image: "/images/product_images/recliner-chair-white.jpg",
     name: "Arvana Motorized Recliner Sofa",
     rating: {
@@ -69,7 +69,7 @@ export const products = [{
     price: 23000
 },
 {
-    id: crypto.randomUUID(),
+    id: "product-8",
     image: "/images/product_images/washing-machine.jpg",
     name: "Bosch 9kg FrontLoad Fully-Automatic Washing Machine",
     rating: {
