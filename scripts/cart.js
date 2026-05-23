@@ -39,17 +39,17 @@ export function addToCart (productId) {
 
 
 export function removeFromCart (productId) {
-    const newCart = [];
-
     cart.forEach((cartItem) => {
-        if (cartItem.productId !== productId) {
-            newCart.push(cartItem);
+        if (cartItem.productId === productId) {
+            const indexToDelete = cart.findIndex((cartItem) => {
+                return cartItem.productId === productId;
+            });
+            cart.splice(indexToDelete, 1);
         }
     });
 
-    cart = newCart;
-
     saveToStorage();
 }
+
 
 

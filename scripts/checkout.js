@@ -74,7 +74,6 @@ cart.forEach((cartItem) => {
 
 });
 
-
 document.querySelector('.js-order-summary').innerHTML = cartItemHTML;
 
 
@@ -90,4 +89,3 @@ document.querySelectorAll('.js-link-delete').forEach((link) => {
 
     });
 });
-
