@@ -1,4 +1,4 @@
-const products = [{
+export const products = [{
     id: crypto.randomUUID(),
     image: "/images/product_images/atomberg-fan-1200mm.jpg",
     name: "Atomberg Renesa 1200mm BLDC Ceiling Fan",
