@@ -1,3 +1,19 @@
+
+
+export function getProduct(productId) {
+    let matchingProduct;
+
+    products.forEach((product) => {
+        if (product.id === productId) {
+            matchingProduct = product;
+        }
+    });
+    return matchingProduct;
+}
+
+
+
+
 export const products = [{
     id: "product-1",
     image: "/images/product_images/atomberg-fan-1200mm.jpg",

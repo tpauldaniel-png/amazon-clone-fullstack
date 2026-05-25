@@ -39,8 +39,8 @@
 
 .payment-summary {
     grid-column: 2;
-    border: 2px solid black;
-    
+    border: 2px solid rgba(191, 218, 218, 0.847);
+    margin: 15px;
 }
 
 
@@ -160,4 +160,56 @@
 
 .link-save:hover {
     color:rgb(45, 169, 231);
+}
+
+.payment-summary {
+    padding: 10px;
+}
+
+
+
+.payment-summary-title {
+    margin-bottom: 15px;
+    font-size: 20px;
+    padding: 10px;
+    font-weight: bolder;
+}
+
+.payment-summary-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    font-size: 15px;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+
+.subtotal-row .payment-summary-money {
+    border-top: 2px solid rgba(191, 218, 218, 0.847);
+}
+
+.subtotal-row div {
+    padding-top:5px;
+}
+
+.total-row {
+    color: rgba(205, 33, 33, 0.852);
+    font-weight: bolder;
+    font-size: 20px;
+    border-top: 2px solid rgba(191, 218, 218, 0.847);
+    padding: 10px;
+}
+
+.place-order-button {
+    width: 100%;
+    background-color: rgba(242, 242, 12, 0.978);
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+
+}
+
+.place-order-button:hover {
+    background-color: rgba(194, 178, 3, 0.956);
+    cursor: pointer;
 }
