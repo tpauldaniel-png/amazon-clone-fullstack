@@ -13,7 +13,40 @@ export function getProduct(productId) {
 
 
 
+export let products = []
 
+export function loadProducts(fun) {
+    const xhr = new XMLHttpRequest();
+
+    xhr.addEventListener('load', () => {
+        const response = JSON.parse(xhr.response);
+        products = response.products;
+
+        fun();
+    });
+
+    xhr.open('GET', 'http://127.0.0.1:8000/products/');
+    xhr.send();
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 export const products = [{
     id: "product-1",
     image: "/frontend/images/product_images/atomberg-fan-1200mm.jpg",
@@ -95,3 +128,5 @@ export const products = [{
     price: 32300
 }
 ];
+
+*/
