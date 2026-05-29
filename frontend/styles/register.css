@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing:border-box;
+}
+
+html {
+    font-size: 1rem;
+}
+
+input {
+    width: 400px;
+    font-size: .9rem;
+    padding: .3rem;
+}
+
+h1 {
+    padding: 2rem;
+}
+
+
+
+.amazon-header {
+    background-color: black;
+    text-align: center;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 70px;
+}
+
+.amazon-logo {
+    width: 150px;
+    padding-top: 15px;
+}
+
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 500px;
+    height: 700px;
+    margin: auto;
+}
+
+.button {
+    width: 100%;
+    padding: 10px;
+    background-color: rgba(217, 217, 35, 0.978);
+    
+}
+
+.button:hover {
+    background-color: rgba(194, 178, 3, 0.956);
+    cursor: pointer;
+}
+
+.link-to-login {
+    text-align: center;
+}
+

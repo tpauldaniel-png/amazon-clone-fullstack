@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="author" content="Paul Daniel">
+        <meta name="description" content="Registration for new users">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>User Registration</title>
+        <link rel="stylesheet" href="/frontend/styles/register.css">
+    </head>
+    <body>
+
+        <div class="amazon-header">
+            <img src="/frontend/images/amazon-logo.png" class="amazon-logo">
+        </div>
+
+
+        <div class="form-container">
+            
+
+            <form>
+
+                <h1 class="heading">New User Registration</h1>
+
+                <div>
+                    <label for="first_name">First Name</label>
+                </div>
+                <div>
+                    <input type="text" name="first_name" id="first_name" placeholder="John" required autofocus>
+                </div>
+                <br>
+
+
+                <div>
+                    <label for="last_name">Last Name</label>
+                </div>
+                <div>
+                    <input type="text", name="last_name", id="last_name" placeholder="Doe" required>
+                </div>
+                <br>
+                
+
+                <div>
+                    <label for="phone_no">Phone no</label>
+                </div>
+                <div>
+                    <input type="text" name="phone_no" id="phone_no" placeholder="1234567890" pattern="[0-9]" required>
+                </div>
+                <br>
+
+                <div>
+                    <label for="address">Address</label>
+                </div>
+                <div>
+                    <input type="text" name="address" id="address" placeholder="Enter your address here" required>
+                </div>
+                <br>
+
+                <div>
+                    <label for="email">Email</label>
+                </div>
+                <div>
+                    <input type="email" name="email" id="email" placeholder="Enter your email here" required>
+                </div>
+                <br>
+
+                <div>
+                    <label for="password">Password</label>
+                </div>
+                <div>
+                    <input type="password" name="password" id="password" placeholder="Enter your password here" required> 
+                </div>
+                <br>
+
+                <div>
+                    <button type="submit" class="button">Create your Amazon account</button>
+                </div>
+                <br>
+
+                
+                <p class="link-to-login">Already have an account? <a href="./login.html">Sign in</a></p>
+                
+                
+
+
+            </form>
+
+            
+
+
+        </div>
+
+
+
+    </body>
+
+</html>
