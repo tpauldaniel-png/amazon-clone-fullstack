@@ -5,7 +5,7 @@ from app.models import models_users
 from app.schemas.users import UserCreate, UserCreateResponse, UsersResponse, UserOut
 from app.crud import crud_users
 from uuid import UUID
-
+from app import oauth2
 
 
 
@@ -28,7 +28,7 @@ def create_user(user: UserCreate, db: Session = Depends(get_db)):
 
 
 @router.get("/", response_model=UsersResponse)
-def get_users(db: Session = Depends(get_db)):
+def get_users(db: Session = Depends(get_db), user_id = Depends(oauth2.get_current_user)):
 
     users_data = crud_users.get_all_users(db)
 
@@ -39,9 +39,11 @@ def get_users(db: Session = Depends(get_db)):
 
 
 @router.get("/{id}", response_model=UserOut)
-def get_user(id: UUID, db: Session = Depends(get_db)):
+def get_user(id: UUID, db: Session = Depends(get_db),user_id = Depends(oauth2.get_current_user)):
 
     user_data = crud_users.get_one_user(id, db)
 
     return user_data
+
+
 
