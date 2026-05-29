@@ -220,6 +220,6 @@ export function renderOrderSummary () {
 
 
 
-renderOrderSummary();
+
 
 
