@@ -24,6 +24,7 @@ async function sendData() {
         console.log(await response.json());
     } catch (error) {
         console.log(error);
+        alert(`User Registration failed`)
     }
 }
 
