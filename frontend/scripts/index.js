@@ -80,4 +80,41 @@ function renderProductsGrid() {
         });
     });
 
+
+    
+    const token = localStorage.getItem('jwtAccessToken');
+
+    getUserData(token)
+
+    
+
+
+    async function getUserData(token) {
+
+        try {
+            const response = await fetch("http://127.0.0.1:8000/users/me", {
+                method: "GET",
+                headers: {
+                    'Authorization' : `Bearer ${token}`,
+                    'Content-Type' : 'application/json'
+                }
+
+            });
+
+            const result = await response.json();
+
+            if (!response.ok) {
+                throw new Error(`HTTP Error! status-- ${response.status}`)
+            }
+
+            localStorage.setItem('loggedInUser', result.user_id)
+        } catch (error) {
+            console.log(error)
+        }   
+        
+    }
+
+
+
+
 }

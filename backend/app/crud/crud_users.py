@@ -42,3 +42,12 @@ def get_one_user(id, db):
     return user_data
     
     
+def get_me_user(db, user_id):
+
+    user_me_data = db.query(models_users.User).filter(models_users.User.user_id == user_id).first()
+
+    if user_me_data is None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="user not found")
+
+
+    return user_me_data

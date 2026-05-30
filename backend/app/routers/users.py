@@ -38,6 +38,15 @@ def get_users(db: Session = Depends(get_db), user_id = Depends(oauth2.get_curren
 
 
 
+@router.get("/me", response_model=UserOut)
+def get_user_me(db: Session = Depends(get_db), user_id = Depends(oauth2.get_current_user)):
+
+    user_me_data = crud_users.get_me_user(db, user_id)
+
+    return user_me_data
+
+
+
 @router.get("/{id}", response_model=UserOut)
 def get_user(id: UUID, db: Session = Depends(get_db),user_id = Depends(oauth2.get_current_user)):
 
