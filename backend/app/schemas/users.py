@@ -20,7 +20,7 @@ class UserOut(BaseModel):
     email: str
 
     class Config:
-        from_attributes: True
+        from_attributes =  True
 
 class UserCreateResponse(BaseModel):
     message: str
