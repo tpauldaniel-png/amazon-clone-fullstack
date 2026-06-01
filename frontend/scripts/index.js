@@ -1,4 +1,4 @@
-import {cart, addToCart} from './cart.js';
+import {addToCart} from './cart.js';
 import {products, loadProducts} from './products.js';
 
 
@@ -56,26 +56,61 @@ function renderProductsGrid() {
 
     document.querySelector('.js-products-grid').innerHTML = productHTML;
 
+ 
+    
 
-    function updateCartQuantity () {
-        let cartQuantity = 0;
-        cart.forEach((item) => {
-            cartQuantity += item.quantity;
-        });
+    async function updateCartQuantity(token) {
 
-        document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
+        try {
+            const response = await fetch("http://127.0.0.1:8000/cart", {
+                method: "GET",
+                headers: {
+                    'Authorization' : `Bearer ${token}`,
+                    'Content-Type' : 'application/json'
+                }
+            });
+
+            const result = await response.json();
+
+            if (!response.ok) {
+                throw new Error(`HTTP Error! status-- ${response.status}`)
+            }
+
+
+            let cartQuantity = 0;
+
+            result.user_cart.forEach((item) => {
+                cartQuantity += item.quantity;
+            });
+
+            document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
+
+
+
+        } catch (error) {
+            console.log(error)
+        }
+
+
+
     }
 
 
 
 
+
+
+
     document.querySelectorAll('.js-add-to-cart-button').forEach((button) => {
-        button.addEventListener('click', () => {
+        button.addEventListener('click', async () => {
             const productId = button.dataset.productId;
             
-            addToCart(productId);
+            const token = localStorage.getItem('jwtAccessToken');
 
-            updateCartQuantity ();
+            await addToCart(productId, token);
+
+            updateCartQuantity(token);
+            
             
         });
     });
@@ -118,3 +153,9 @@ function renderProductsGrid() {
 
 
 }
+
+
+
+
+
+

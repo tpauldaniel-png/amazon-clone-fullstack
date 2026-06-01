@@ -1,3 +1,65 @@
+
+
+
+export async function addToCart(productId, token) {
+    
+    const quantitySelector = document.querySelector(`.js-quantity-selector-${productId}`)
+
+    const quantity = Number(quantitySelector.value);
+    
+    
+    
+    const cartItem = {
+        product_id : productId,
+        quantity : quantity,
+        delivery_option_id : 1 
+    }
+
+    try {
+        const response = await fetch("http://127.0.0.1:8000/cart", {
+            method : "POST",
+            body: JSON.stringify(cartItem),
+            headers: {
+                'Authorization' : `Bearer ${token}`,
+                'Content-Type' : 'application/json'
+            }
+        });
+        const result = await response.json();
+
+        if (!response.ok) {
+            throw new Error(`HTTP ERROR! status--${response.status}`)
+        }
+
+    } catch (error) {
+        console.log(error)
+    }
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+
 export let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
 
@@ -79,3 +141,4 @@ export function updateDeliveryOption (productId, deliveryOptionId) {
     saveToStorage();
 }   
 
+*/
