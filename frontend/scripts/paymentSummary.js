@@ -1,18 +1,18 @@
-import {cart} from './cart.js';
+
 import {getProduct} from './products.js';
 import {deliveryOptions, getDeliveryOption} from './deliveryOptions.js';
 
 
-export function renderPaymentSummary () {
+export function renderPaymentSummary (cart, products) {
 
     let productPrices = 0;
     let shippingPrice = 0;
     cart.forEach((cartItem) => {
         
-        const product = getProduct(cartItem.productId);
+        const product = getProduct(cartItem.product_id, products);
         productPrices += product.price * cartItem.quantity;
 
-        const deliveryOption = getDeliveryOption(cartItem.deliveryOptionId);
+        const deliveryOption = getDeliveryOption(String(cartItem.delivery_option_id));
         shippingPrice += deliveryOption.shippingPrice;
     })
 
@@ -22,7 +22,7 @@ export function renderPaymentSummary () {
 
     const orderTotal = totalBeforeTax + estimatedTax;
 
-    const numberOfItems = checkoutItems();
+    const numberOfItems = checkoutItems(cart);
 
     const paymentSummaryHTML = `
         <div class="payment-summary-title">

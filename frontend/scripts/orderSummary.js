@@ -1,5 +1,5 @@
-import {cart, removeFromCart, updateQuantity, updateDeliveryOption} from './cart.js';
-import {products, loadProducts} from './products.js';
+import {getCart, removeFromCart, updateQuantity, updateDeliveryOption} from './cart.js';
+import {getProducts} from './products.js';
 import {deliveryOptions} from './deliveryOptions.js';
 import {renderPaymentSummary} from './paymentSummary.js';
 
@@ -12,7 +12,7 @@ import {renderPaymentSummary} from './paymentSummary.js';
 
 
 
-export function renderOrderSummary () {
+export function renderOrderSummary (cart, products) {
 
 
 
@@ -20,7 +20,7 @@ export function renderOrderSummary () {
     let cartItemHTML = ``;
 
     cart.forEach((cartItem) => {
-        const productId = cartItem.productId;
+        const productId = cartItem.product_id;
 
         let matchingProduct;
 
@@ -33,7 +33,7 @@ export function renderOrderSummary () {
 
 
 
-        const deliveryOptionId = cartItem.deliveryOptionId;
+        const deliveryOptionId = String(cartItem.delivery_option_id);
 
         let deliveryOption;
 
@@ -110,7 +110,7 @@ export function renderOrderSummary () {
             const priceString = deliveryOption.shippingPrice === 0 ? 'Free' : `₹${deliveryOption.shippingPrice} -`;
 
             
-            const isChecked = deliveryOption.id === cartItem.deliveryOptionId;
+            const isChecked = deliveryOption.id === String(cartItem.delivery_option_id);
 
 
             optionsHTML += `
@@ -136,18 +136,23 @@ export function renderOrderSummary () {
 
 
     document.querySelectorAll('.js-link-delete').forEach((link) => {
-        link.addEventListener('click', () => {
+        link.addEventListener('click', async () => {
             const productId = link.dataset.productId;
             
-            removeFromCart(productId);
+            const token = localStorage.getItem('jwtAccessToken');
+
+            await removeFromCart(productId, token);
 
             const container = document.querySelector(`.js-item-container-${productId}`);
 
             container.remove();
 
-            updateCheckOutQuantity();
+            await updateCheckOutQuantity(token);
 
-            renderPaymentSummary();
+            const updatedCart = await getCart(token);
+            
+            renderOrderSummary(updatedCart, products);
+            renderPaymentSummary(updatedCart, products);
 
         });
     });
@@ -155,16 +160,51 @@ export function renderOrderSummary () {
 
 
 
-    function updateCheckOutQuantity () {
-        let cartQuantity = 0;
-        cart.forEach((item) => {
-            cartQuantity += item.quantity;
-        });
+    async function updateCheckOutQuantity(token) {
 
-        document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
+        try {
+            const response = await fetch("http://127.0.0.1:8000/cart", {
+                method: "GET",
+                headers: {
+                    'Authorization' : `Bearer ${token}`,
+                    'Content-Type' : 'application/json'
+                }
+            });
+
+            const result = await response.json();
+
+            if (!response.ok) {
+                throw new Error(`HTTP Error! status-- ${response.status}`)
+            }
+
+
+            let cartQuantity = 0;
+
+            result.user_cart.forEach((item) => {
+                cartQuantity += item.quantity;
+            });
+
+            document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
+
+
+
+        } catch (error) {
+            console.log(error)
+        }
+
+
+
     }
 
-    updateCheckOutQuantity();
+
+
+
+
+
+    const token = localStorage.getItem('jwtAccessToken');
+
+
+    updateCheckOutQuantity(token);
 
 
 
@@ -185,7 +225,7 @@ export function renderOrderSummary () {
 
 
     document.querySelectorAll('.js-link-save').forEach((link) => {
-        link.addEventListener('click', () => {
+        link.addEventListener('click', async () => {
             const productId = link.dataset.productId;
 
             const container = document.querySelector(`.js-item-container-${productId}`);
@@ -194,25 +234,37 @@ export function renderOrderSummary () {
             const inputQuantity = document.querySelector(`.js-quantity-input-${productId}`);
             const newQuantity = Number(inputQuantity.value);
 
-            updateQuantity(productId, newQuantity);
+            const token = localStorage.getItem('jwtAccessToken');
+
+
+            await updateQuantity(productId, newQuantity, token);
 
             document.querySelector(`.js-quantity-nos-${productId}`).innerHTML = newQuantity;
 
-            updateCheckOutQuantity();
+            await updateCheckOutQuantity(token);
 
-            renderPaymentSummary();
+            const updatedCart = await getCart(token); 
+
+            renderOrderSummary(updatedCart, products);
+            renderPaymentSummary(updatedCart, products);
+            
 
         });
     });
 
 
     document.querySelectorAll('.js-delivery-option').forEach((element) => {
-        element.addEventListener('click', () => {
+        element.addEventListener('click', async () => {
 
             const {productId,deliveryOptionId} = element.dataset
-            updateDeliveryOption(productId, deliveryOptionId);
-            renderOrderSummary();
-            renderPaymentSummary();
+            const token = localStorage.getItem('jwtAccessToken');
+
+            await updateDeliveryOption(productId, deliveryOptionId, token);
+
+            const updatedCart = await getCart(token);
+
+            renderOrderSummary(updatedCart, products);
+            renderPaymentSummary(updatedCart, products);
         });
     });
 

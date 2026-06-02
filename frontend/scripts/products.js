@@ -1,6 +1,5 @@
 
-
-export function getProduct(productId) {
+export function getProduct(productId, products) {
     let matchingProduct;
 
     products.forEach((product) => {
@@ -29,6 +28,30 @@ export function loadProducts(fun) {
     xhr.send();
 
 
+}
+
+
+
+export async function getProducts() {
+    try {
+    const response = await fetch("http://127.0.0.1:8000/products", {
+        method: "GET",
+        headers: {
+            'Content-Type' : 'application/json'
+        }
+    });
+    const result = await response.json();
+
+    if (!response.ok) {
+        throw new Error(`HTTP Error! status-- ${response.status}`)
+    }
+
+    return result.products;
+
+    } catch (error) {
+        console.log(error);
+        return [];
+    }
 }
 
 

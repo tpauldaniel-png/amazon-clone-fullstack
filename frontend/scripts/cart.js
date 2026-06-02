@@ -39,17 +39,139 @@ export async function addToCart(productId, token) {
 
 
 
+export async function getCart(token) {
+
+    try {
+    const response = await fetch("http://127.0.0.1:8000/cart", {
+        method: "GET",
+        headers: {
+            'Authorization' : `Bearer ${token}`,
+            'Content-Type' : 'application/json'
+        }
+    });
+    const result = await response.json();
+
+    if (!response.ok) {
+        throw new Error(`HTTP Error! status-- ${response.status}`)
+    }
+
+    return result.user_cart;
+
+    } catch (error) {
+        console.log(error);
+        return [];
+    }
+}
+
+
+
+export async function removeFromCart(productId, token) {
+    const cart = await getCart(token);
+
+    let matchingItem;
+    cart.forEach((item) => {
+            if (item.product_id == productId) {
+                matchingItem = item
+            }
+    });
+
+    if (!matchingItem) return;
+
+    try {
+    const response = await fetch(`http://127.0.0.1:8000/cart/${matchingItem.cart_id}`, {
+            method: "DELETE",
+            headers: {
+                'Authorization' : `Bearer ${token}`,
+                'Content-Type' : 'application/json'
+            }
+    });
+
+    } catch (error) {
+        console.log(error);
+    }
+}
 
 
 
 
 
+export async function updateQuantity(productId, newQuantity, token) {
+    const cart = await getCart(token);
+
+    let matchingItem;
+    cart.forEach((item) => {
+            if (item.product_id == productId) {
+                matchingItem = item
+            }
+    });
+
+    if (!matchingItem) return;
+
+    const cartItem = {
+        quantity: newQuantity,
+        delivery_option_id: matchingItem.delivery_option_id
+    };
+
+    try {
+        const response = await fetch(`http://127.0.0.1:8000/cart/${matchingItem.cart_id}`, {
+            method : "PUT",
+            body : JSON.stringify(cartItem),
+            headers : {
+                'Authorization' : `Bearer ${token}`,
+                'Content-Type' : 'application/json'
+            }
+        });
+
+        const result = await response.json();
+
+
+        if (!response.ok) {
+            throw new Error(`HTTP ERROR! status--${response.status}`)
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
 
 
 
+export async function updateDeliveryOption(productId, deliveryOptionId, token) {
+    const cart = await getCart(token);
+
+    let matchingItem;
+    cart.forEach((item) => {
+            if (item.product_id == productId) {
+                matchingItem = item
+            }
+    });
+
+    if (!matchingItem) return;
+
+    const cartItem = {
+        quantity: matchingItem.quantity,
+        delivery_option_id: deliveryOptionId
+    };
+
+    try {
+        const response = await fetch(`http://127.0.0.1:8000/cart/${matchingItem.cart_id}`, {
+            method : "PUT",
+            body : JSON.stringify(cartItem),
+            headers : {
+                'Authorization' : `Bearer ${token}`,
+                'Content-Type' : 'application/json'
+            }
+        });
+
+        const result = await response.json();
 
 
-
+        if (!response.ok) {
+            throw new Error(`HTTP ERROR! status--${response.status}`)
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
 
 
 
