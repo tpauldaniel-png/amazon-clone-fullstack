@@ -1,6 +1,6 @@
 import {renderOrderSummary} from './orderSummary.js';
 import {renderPaymentSummary} from './paymentSummary.js';
-import {loadProducts, getProducts} from './products.js';
+import {getProducts} from './products.js';
 
 import {getCart} from './cart.js';
 
@@ -21,12 +21,6 @@ checkOut(token);
 
 
 
-/*
-loadProducts(() => {
-    renderOrderSummary();
-    renderPaymentSummary();
-});
-*/
 
 
 
