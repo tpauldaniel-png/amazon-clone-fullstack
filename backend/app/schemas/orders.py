@@ -30,9 +30,17 @@ class OrderCreateResponse(BaseModel):
     order_item: list[OrderItemOut]
 
 
-class OrdersResponse(BaseModel):
-    orders : list[OrderOut]
 
-class OrderOneResponse(BaseModel):
-    order : OrderOut
-    order_items : list[OrderItemOut]
+
+
+class OrderWithItems(BaseModel):
+    order: OrderOut
+    order_items:list[OrderItemOut]
+
+    class Config:
+        from_attributes = True
+
+
+class OrderWithItemsResponse(BaseModel):
+    orders : list[OrderWithItems]
+

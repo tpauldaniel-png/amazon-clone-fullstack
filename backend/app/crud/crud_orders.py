@@ -1,5 +1,6 @@
 from app.models import models_orders, models_cart, models_products, models_delivery_options
 from fastapi import HTTPException, status
+from collections import deque
 
 
 def create_order(db, logged_in_user_id):
@@ -74,25 +75,23 @@ def create_order(db, logged_in_user_id):
 
 
 
+
 def get_orders(db, logged_in_user_id):
 
-    orders = db.query(models_orders.Order).filter(models_orders.Order.user_id == logged_in_user_id).all()
+    orders = db.query(models_orders.Order).filter(models_orders.Order.user_id == logged_in_user_id).order_by(models_orders.Order.created_at.desc()).all()
 
+    response_orders = []
+
+
+    for order in orders:
+
+        order_items = db.query(models_orders.OrderItem).filter(models_orders.OrderItem.order_id == order.order_id).all()
+
+        response_orders.append({
+            "order" : order,
+            "order_items" : order_items
+        })
     
-    return orders
+    
 
-
-
-def get_one_order(order_id, db, logged_in_user_id):
-
-    order = db.query(models_orders.Order).filter(models_orders.Order.order_id == order_id, models_orders.Order.user_id == logged_in_user_id).first()
-
-    if order is None:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="order not found")
-
-    order_items = db.query(models_orders.OrderItem).filter(models_orders.OrderItem.order_id == order.order_id).all()
-
-    return {
-        "order" : order,
-        "order_items" : order_items
-    }
+    return response_orders

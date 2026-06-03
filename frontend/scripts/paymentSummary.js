@@ -56,7 +56,7 @@ export function renderPaymentSummary (cart, products) {
             <div class="payment-summary-money">₹${orderTotal}</div>
         </div>
 
-        <button class="place-order-button">Place your order</button>
+        <button class="place-order-button js-place-order-button">Place your order</button>
     `;
 
     document.querySelector('.js-payment-summary').innerHTML = paymentSummaryHTML;
@@ -70,6 +70,33 @@ export function renderPaymentSummary (cart, products) {
 
         return cartQuantity;
     }
+
+    document.querySelector('.js-place-order-button').addEventListener('click', async () => {
+
+        try {
+            const token = localStorage.getItem('jwtAccessToken');
+
+            const response = await fetch("http://127.0.0.1:8000/orders", {
+                method : "POST",
+                headers: {
+                'Authorization' : `Bearer ${token}`,
+                'Content-Type' : 'application/json'
+                }
+            });
+
+            const result = await response.json();
+
+            if (!response.ok) {
+            throw new Error(`HTTP Error! status-- ${response.status}`)
+            }
+
+            window.location.href = '/frontend/orders.html';
+
+        } catch (error) {
+            console.log(error);
+        }
+
+    });
 
 }
 

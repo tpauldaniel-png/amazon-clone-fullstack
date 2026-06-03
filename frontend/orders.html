@@ -18,14 +18,14 @@
 
         <div class="main">
 
-            <div class="intro">Hello John, Thank you for shopping with us.</div>
+            <div class="intro">Hello <span class="js-intro-name"></span>, Thank you for shopping with us.</div>
 
             <div class="title-page">
                 Order summary
             </div>
 
 
-            <div class="order-summary">
+            <div class="order-summary js-order-summary" >
                 <div class="order-container">
                     <div class="total-order-details">
                         <div class="order-id">Order id : 123</div>
@@ -48,5 +48,7 @@
 
             </div>
         </div>
+        <script src="https://unpkg.com/dayjs@1/dayjs.min.js"></script>
+        <script type="module" src="/frontend/scripts/order.js"></script>
     </body>
 </html>

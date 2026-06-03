@@ -4,7 +4,7 @@ from uuid import UUID
 from sqlalchemy.orm import Session
 from app.database import get_db
 from app import oauth2
-from app.schemas.orders import OrderCreateResponse, OrdersResponse, OrderOneResponse
+from app.schemas.orders import OrderCreateResponse, OrderWithItemsResponse
 from app.crud import crud_orders
 
 
@@ -27,7 +27,9 @@ def create_order( db: Session = Depends(get_db), logged_in_user_id = Depends(oau
     
 
 
-@router.get("/", response_model=OrdersResponse)
+
+
+@router.get("/", response_model=OrderWithItemsResponse)
 def get_orders(db: Session = Depends(get_db), logged_in_user_id = Depends(oauth2.get_current_user)):
 
     orders = crud_orders.get_orders(db, logged_in_user_id)
@@ -35,15 +37,3 @@ def get_orders(db: Session = Depends(get_db), logged_in_user_id = Depends(oauth2
     return {
         "orders" : orders
     }
-
-
-@router.get("/{order_id}", response_model=OrderOneResponse)
-def get_order(order_id: UUID, db: Session = Depends(get_db), logged_in_user_id = Depends(oauth2.get_current_user)):
-
-    result = crud_orders.get_one_order(order_id, db, logged_in_user_id)
-
-    return {
-        "order" : result.get("order"),
-        "order_items" : result.get("order_items")
-    }
-
