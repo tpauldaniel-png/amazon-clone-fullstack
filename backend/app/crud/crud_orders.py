@@ -11,7 +11,7 @@ def create_order(db, logged_in_user_id):
         if not cart:
             raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="cart is empty")
 
-        total_price = 0
+        sub_total = 0
 
         for cart_item in cart:
             product = db.query(models_products.Product).filter(models_products.Product.id == cart_item.product_id).first()
@@ -20,10 +20,11 @@ def create_order(db, logged_in_user_id):
                 raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="product not found")
             
             delivery_option = db.query(models_delivery_options.DeliveryOption).filter(models_delivery_options.DeliveryOption.delivery_option_id == cart_item.delivery_option_id).first()
-            total_price += (product.price * cart_item.quantity + delivery_option.shipping_price)
+            sub_total += (product.price * cart_item.quantity + delivery_option.shipping_price)
             
-
-
+            
+        tax = sub_total * 0.1
+        total_price = sub_total + tax
 
         new_order = models_orders.Order(
             total_price = total_price,
