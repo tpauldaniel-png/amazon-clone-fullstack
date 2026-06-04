@@ -141,6 +141,8 @@ export function renderOrderSummary (cart, products) {
             
             const token = localStorage.getItem('jwtAccessToken');
 
+           
+            
             await removeFromCart(productId, token);
 
             const container = document.querySelector(`.js-item-container-${productId}`);
@@ -236,6 +238,8 @@ export function renderOrderSummary (cart, products) {
 
             const token = localStorage.getItem('jwtAccessToken');
 
+           
+
 
             await updateQuantity(productId, newQuantity, token);
 
@@ -259,6 +263,9 @@ export function renderOrderSummary (cart, products) {
             const {productId,deliveryOptionId} = element.dataset
             const token = localStorage.getItem('jwtAccessToken');
 
+           
+
+            
             await updateDeliveryOption(productId, deliveryOptionId, token);
 
             const updatedCart = await getCart(token);
@@ -266,6 +273,14 @@ export function renderOrderSummary (cart, products) {
             renderOrderSummary(updatedCart, products);
             renderPaymentSummary(updatedCart, products);
         });
+    });
+
+
+    document.querySelector('.js-logout-link').addEventListener('click', () => {
+        localStorage.removeItem('jwtAccessToken');
+        localStorage.removeItem('loggedInUser');
+
+         window.location.href = '/frontend/login.html';
     });
 
 }

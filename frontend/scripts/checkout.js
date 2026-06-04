@@ -6,6 +6,8 @@ import {getCart} from './cart.js';
 
 const token = localStorage.getItem('jwtAccessToken');
 
+
+
 async function checkOut(token) {
    const cart = await getCart(token);
 

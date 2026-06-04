@@ -80,7 +80,12 @@ export function renderOrderPage (orders, products, userData) {
     document.querySelector('.js-intro-name').innerHTML = userData.first_name + ' ' + userData.last_name;
 
     
+    document.querySelector('.js-logout-link').addEventListener('click', () => {
+        localStorage.removeItem('jwtAccessToken');
+        localStorage.removeItem('loggedInUser');
 
+         window.location.href = '/frontend/login.html';
+    });
 
     
         

@@ -107,6 +107,8 @@ function renderProductsGrid() {
             
             const token = localStorage.getItem('jwtAccessToken');
 
+           
+
             await addToCart(productId, token);
 
             updateCartQuantity(token);
@@ -150,7 +152,12 @@ function renderProductsGrid() {
     }
 
 
+    document.querySelector('.js-logout-link').addEventListener('click', () => {
+        localStorage.removeItem('jwtAccessToken');
+        localStorage.removeItem('loggedInUser');
 
+         window.location.href = '/frontend/login.html';
+    });
 
 }
 

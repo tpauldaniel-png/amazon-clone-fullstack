@@ -4,6 +4,10 @@ import {renderOrderPage} from './renderingOrder.js';
 
 
 const token = localStorage.getItem('jwtAccessToken');
+
+
+
+
 orderPageSummary(token);
 
 

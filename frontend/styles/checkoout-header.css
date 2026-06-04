@@ -10,7 +10,7 @@
 .checkout-header {
     display: flex;
     align-items: center;
-    column-gap: 500px;
+    justify-content : space-around;
 
     padding-left: 30px;
     padding-right: 30px;
@@ -36,4 +36,8 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
-
+.logout-link {
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    cursor: pointer;
+}

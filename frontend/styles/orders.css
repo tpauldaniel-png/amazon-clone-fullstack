@@ -12,6 +12,14 @@
     background-color: black;
     text-align: center;
 
+    display: flex;
+    align-items: center;
+    justify-content : space-between;
+
+    padding-left: 50px;
+    padding-right: 50px;
+    
+
     position: fixed;
     top: 0;
     left: 0;
@@ -102,3 +110,9 @@
     color:blueviolet;
 }
 
+.logout-link {
+    color: whitesmoke;
+    font-size: 20px;
+    cursor: pointer;
+
+}
