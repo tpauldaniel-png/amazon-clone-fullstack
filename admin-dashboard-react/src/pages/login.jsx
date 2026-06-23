@@ -1,9 +1,43 @@
+import {useState} from 'react';
 import amazonLogo from '../assets/amazon-logo.png';
+import {Link} from 'react-router-dom';
 import './login.css';
 
 
 
 export function LoginPage() {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    async function handleSubmit(e) {
+        e.preventDefault();
+
+        const response = await fetch("http://127.0.0.1:8000/login/", {
+            method : "POST",
+            headers: {
+                'Content-Type' : 'application/x-www-form-urlencoded'
+            },
+            body : new URLSearchParams({
+                username : email,
+                password : password
+            })
+        });
+
+        const data = await response.json();
+
+        if (data.role !== "admin") {
+            alert("Only admin can access this dashboard");
+            return;
+        }
+
+        localStorage.setItem("adminToken", data.access_token);
+
+        alert("admin login successfull")
+
+    }
+
+
+
     return (
         <>
             <div className="amazon-header">
@@ -12,22 +46,26 @@ export function LoginPage() {
 
             <div className="form-container">
 
-                <form id="custom-login-form">
+                <form id="custom-login-form" onSubmit={handleSubmit}>
                     <h1>Admin Login</h1>
 
                     <div>
-                        <label for="username">Email</label>
+                        <label htmlFor="username">Email</label>
                     </div>
                     <div>
-                        <input type="email" name="username" id="username" placeholder="Enter your email here" autofocus required />
+                        <input type="email" name="username" id="username" placeholder="Enter your email here" autoFocus required 
+                            value={email} onChange={(e) => setEmail(e.target.value)}
+                        />
                     </div>
                     <br />
 
                     <div>
-                        <label for="password">Password</label>
+                        <label htmlFor="password">Password</label>
                     </div>
                     <div>
-                        <input type="password" name="password" id="password" placeholder="Enter your password here" required />
+                        <input type="password" name="password" id="password" placeholder="Enter your password here" required 
+                            value={password} onChange={(e) => setPassword(e.target.value)}
+                        />
                     </div>
                     <br />
 
@@ -36,10 +74,7 @@ export function LoginPage() {
                     </div>
                     <br />
 
-                    <p>New to Amazon?</p>
-                    <div>
-                        <a href="/frontend/register.html">Create your Amazon Account</a>
-                    </div>
+                    
                 </form>
             </div>
         </>
