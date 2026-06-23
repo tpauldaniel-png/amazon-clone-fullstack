@@ -9,6 +9,7 @@ class UserCreate(BaseModel):
     address: str
     email: str
     password: str
+    role: str
 
 
 class UserOut(BaseModel):
@@ -18,6 +19,7 @@ class UserOut(BaseModel):
     phone_no: str
     address: str
     email: str
+    role: str
 
     class Config:
         from_attributes =  True

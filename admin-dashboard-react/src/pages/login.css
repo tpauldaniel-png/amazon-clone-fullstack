@@ -18,13 +18,7 @@ input {
 }
 
 h1 {
-    padding: 2rem;
-}
-
-select {
-    width: 400px;
-    font-size: .9rem;
-    padding: .3rem;
+    padding-bottom: 15px;
 }
 
 
@@ -49,10 +43,11 @@ select {
     justify-content: center;
     align-items: center;
     width: 500px;
-    height: 720px;
+    height: 500px;
     margin: auto;
     
 }
+
 
 .button {
     width: 100%;
@@ -67,8 +62,3 @@ select {
     background-color: rgba(194, 178, 3, 0.956);
     cursor: pointer;
 }
-
-.link-to-login {
-    text-align: center;
-}
-

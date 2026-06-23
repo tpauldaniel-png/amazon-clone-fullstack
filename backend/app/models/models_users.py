@@ -15,7 +15,7 @@ class User(Base):
     address: Mapped[str] = mapped_column(Text, nullable=False)
     email: Mapped[str] = mapped_column(String(100), nullable=False, unique=True)
     password: Mapped[str] = mapped_column(String, nullable=False)
-    
+    role: Mapped[str] = mapped_column(String, nullable=False, server_default=text("'customer'"))
 
 
 
