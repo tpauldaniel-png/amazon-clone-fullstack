@@ -7,6 +7,7 @@ import {DeleteProduct} from './pages/DeleteProduct';
 import {ProductList} from './pages/ProductList';
 import {OrderList} from './pages/OrderList';
 import {UserList} from './pages/UserList';
+import {AdminDashboardHome} from './pages/AdminDashboardHome';
 
 import './App.css'
 
@@ -22,6 +23,7 @@ function App() {
           <Route path="/" element={<LoginPage />}></Route>
           
           <Route path="/admin" element={<AdminDashboard />}>
+            <Route index element={<AdminDashboardHome />}></Route>
             <Route path="addProduct" element={<AddProduct />}></Route>
             <Route path="updateProduct" element={<UpdateProduct />}></Route>
             <Route path="deleteProduct" element={<DeleteProduct />}></Route>

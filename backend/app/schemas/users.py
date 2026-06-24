@@ -30,3 +30,4 @@ class UserCreateResponse(BaseModel):
 
 class UsersResponse(BaseModel):
     users: list[UserOut]
+

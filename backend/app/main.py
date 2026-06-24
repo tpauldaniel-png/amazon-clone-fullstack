@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from app.database import Base, engine
 from app.models import models_products, models_users, models_cart, models_delivery_options
-from app.routers import products, users, login, cart, orders
+from app.routers import products, users, login, cart, orders, admin
 from fastapi.middleware.cors import CORSMiddleware
 
 Base.metadata.create_all(bind=engine)
@@ -13,7 +13,7 @@ app.include_router(users.router)
 app.include_router(login.router)
 app.include_router(cart.router)
 app.include_router(orders.router)
-
+app.include_router(admin.router)
 
 
 

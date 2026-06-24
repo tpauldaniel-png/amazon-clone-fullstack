@@ -1,12 +1,12 @@
 from fastapi import Depends, HTTPException, APIRouter, status
 from sqlalchemy.orm import Session
 from app.database import get_db
-from app.models import models_users
+from app.models import models_users, models_products, models_orders
 from app.schemas.users import UserCreate, UserCreateResponse, UsersResponse, UserOut
 from app.crud import crud_users
 from uuid import UUID
 from app import oauth2
-
+from sqlalchemy import func
 
 
 router = APIRouter(
@@ -56,3 +56,5 @@ def get_user(id: UUID, db: Session = Depends(get_db),user_id = Depends(oauth2.ge
 
 
 
+    
+    

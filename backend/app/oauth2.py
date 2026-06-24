@@ -3,6 +3,9 @@ from jose import jwt, JWTError
 from fastapi import Depends, HTTPException, status
 from datetime import datetime, timedelta
 from fastapi.security import OAuth2PasswordBearer
+from sqlalchemy.orm import Session
+from app.database import get_db
+from app.models import models_users
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
 
@@ -46,8 +49,17 @@ def get_current_user(token = Depends(oauth2_scheme)):
     return verify_access_token(token, credentials_exception)
 
 
-def get_current_admin(current_user = Depends(get_current_user)):
-    if current_user.role != "admin":
-        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Admin access required")
+
+
+
+def get_current_admin(db : Session = Depends(get_db), user_id = Depends(get_current_user)):
     
-    return current_user
+    user = db.query(models_users.User).filter(models_users.User.user_id == user_id).first()
+
+    if user is None:
+        raise HTTPException(status_code=401, detail="Invalid credentials")
+
+    if user.role != "admin":
+        raise HTTPException(status_code=403, detail="Admin access required")
+
+    return user
