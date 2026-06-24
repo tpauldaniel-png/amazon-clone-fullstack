@@ -1,0 +1,71 @@
+
+
+.sidebar-container {
+    
+    width: 300px;
+    background-color: #232f3e;
+    flex-shrink: 0;
+    margin-top: 70px;
+}
+
+.row {
+    padding: 30px;
+    gap: 10px;
+    
+}
+
+.sidebar-list .row {
+    width: 100%;
+    height: 50px;
+    
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: whitesmoke;
+    
+}
+
+.row a,
+.row a:visited,
+.row a:hover,
+.row a:active {
+    color: inherit;
+    text-decoration: none;
+}
+
+h1 {
+    color: black;
+}
+
+.row:hover {
+    background: #ff9900;
+}
+
+
+
+.admin-profile {
+  text-align: center;
+  padding: 25px 10px;
+  border-bottom: 1px solid #333;
+  color: white;
+}
+
+.admin-profile img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.admin-profile h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.admin-profile p {
+  margin-top: 5px;
+  font-size: 13px;
+  color: #ccc;
+}

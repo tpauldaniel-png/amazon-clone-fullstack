@@ -1,13 +1,15 @@
 import {useState} from 'react';
 import amazonLogo from '../assets/amazon-logo.png';
-import {Link} from 'react-router-dom';
-import './login.css';
+import {Link, useNavigate} from 'react-router-dom';
+import '../styles/login.css';
 
 
 
 export function LoginPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
+    const navigate = useNavigate();
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -23,7 +25,15 @@ export function LoginPage() {
             })
         });
 
+        if (!response.ok) {
+            alert("Invalid credentials");
+            return;
+        }
+
+
         const data = await response.json();
+
+      
 
         if (data.role !== "admin") {
             alert("Only admin can access this dashboard");
@@ -31,8 +41,10 @@ export function LoginPage() {
         }
 
         localStorage.setItem("adminToken", data.access_token);
+        localStorage.setItem("role", data.role);
 
-        alert("admin login successfull")
+        navigate("/admin");
+
 
     }
 

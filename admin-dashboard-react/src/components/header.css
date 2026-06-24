@@ -1,0 +1,17 @@
+
+
+.amazon-header {
+    background-color: #232f3e;
+    text-align: center;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 70px;
+}
+
+.amazon-logo {
+    width: 150px;
+    padding-top: 15px;
+}
