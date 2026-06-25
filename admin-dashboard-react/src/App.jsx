@@ -25,8 +25,7 @@ function App() {
           <Route path="/admin" element={<AdminDashboard />}>
             <Route index element={<AdminDashboardHome />}></Route>
             <Route path="addProduct" element={<AddProduct />}></Route>
-            <Route path="updateProduct" element={<UpdateProduct />}></Route>
-            <Route path="deleteProduct" element={<DeleteProduct />}></Route>
+            <Route path="updateProduct/:productId" element={<UpdateProduct />}></Route>
             <Route path="productList" element={<ProductList />}></Route>
             <Route path="orderList" element={<OrderList />}></Route>
             <Route path="userList" element={<UserList />}></Route>

@@ -2,12 +2,11 @@ import {Link} from 'react-router-dom';
 import {useState, useEffect} from 'react';
 import './sidebar.css';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import EditSharpIcon from '@mui/icons-material/EditSharp';
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import ListIcon from '@mui/icons-material/List';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import PeopleIcon from '@mui/icons-material/People';
 import ProfilePic from '../assets/emoji-man.avif';
+import DashboardIcon from '@mui/icons-material/Dashboard';
 
 
 export function Sidebar() {
@@ -50,9 +49,8 @@ export function Sidebar() {
             </div>
 
             <ul className="sidebar-list">
+                <li className="row"><DashboardIcon /><Link to="/admin" >Dashboard</Link></li>
                 <li className="row"><AddCircleIcon /><Link to="/admin/addProduct" >Add Product</Link></li>
-                <li className="row"><EditSharpIcon /><Link to="/admin/updateProduct">Update Product</Link></li>
-                <li className="row"><DeleteForeverIcon /><Link to="/admin/deleteProduct">Delete Product</Link></li>
                 <li className="row"><ListIcon /><Link to="/admin/productList">Product List</Link></li>
                 <li className="row"><ShoppingBagIcon /><Link to="/admin/orderList">Order List</Link></li>
                 <li className="row"><PeopleIcon /><Link to="/admin/userList">User List</Link></li>

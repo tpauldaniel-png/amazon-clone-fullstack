@@ -5,11 +5,13 @@
     width: 300px;
     background-color: #232f3e;
     flex-shrink: 0;
+    height: 100%;
     margin-top: 70px;
+    
 }
 
 .row {
-    padding: 30px;
+    padding: 35px;
     gap: 10px;
     
 }
@@ -41,6 +43,13 @@ h1 {
 .row:hover {
     background: #ff9900;
 }
+
+
+.row ::selection {
+  background: #ff9900;
+}
+
+
 
 
 

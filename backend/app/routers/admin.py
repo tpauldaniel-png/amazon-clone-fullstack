@@ -4,7 +4,7 @@ from app.database import get_db
 from app.models import models_users, models_products, models_orders
 from app import oauth2
 from sqlalchemy import func
-from app.schemas.products import ProductCreate, ProductCreateResponse
+from app.schemas.products import ProductCreate, ProductCreateResponse, ProductsResponse
 
 router = APIRouter(
     prefix = "/admin",
@@ -45,3 +45,17 @@ def admin_add_product(data : ProductCreate, db: Session = Depends(get_db), curre
     except Exception:
         db.rollback()
         raise
+
+
+
+@router.get("/get_products", response_model=ProductsResponse)
+def admin_get_products(db: Session = Depends(get_db), current_admin = Depends(oauth2.get_current_admin)):
+
+    
+    products_data = db.query(models_products.Product).all()
+
+    return {
+        "products" : products_data
+    }
+    
+    
