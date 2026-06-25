@@ -4,7 +4,7 @@ from app.database import get_db
 from app.models import models_users, models_products, models_orders
 from app import oauth2
 from sqlalchemy import func
-
+from app.schemas.products import ProductCreate, ProductCreateResponse
 
 router = APIRouter(
     prefix = "/admin",
@@ -28,3 +28,20 @@ def get_admin_stats(db: Session = Depends(get_db), current_admin = Depends(oauth
     }
 
 
+@router.post("/add_product", response_model=ProductCreateResponse, status_code=status.HTTP_201_CREATED)
+def admin_add_product(data : ProductCreate, db: Session = Depends(get_db), current_admin = Depends(oauth2.get_current_admin)):
+    try:
+        new_product = models_products.Product(**data.model_dump())
+
+        db.add(new_product)
+        db.commit()
+        db.refresh(new_product)
+
+        return {
+            "message" : "Product Successfully created",
+            "product" : new_product
+        }
+    
+    except Exception:
+        db.rollback()
+        raise
