@@ -55,39 +55,41 @@ export function LoginPage() {
             <div className="amazon-header">
                 <img src={amazonLogo} className="amazon-logo" />
             </div>
+            <div className="bg">
 
-            <div className="form-container">
+                <div className="form-container">
 
-                <form id="custom-login-form" onSubmit={handleSubmit}>
-                    <h1>Admin Login</h1>
+                    <form id="custom-login-form" onSubmit={handleSubmit}>
+                        <h1>Admin Login</h1>
 
-                    <div>
-                        <label htmlFor="username">Email</label>
-                    </div>
-                    <div>
-                        <input type="email" name="username" id="username" placeholder="Enter your email here" autoFocus required 
-                            value={email} onChange={(e) => setEmail(e.target.value)}
-                        />
-                    </div>
-                    <br />
+                        <div>
+                            <label htmlFor="username">Email</label>
+                        </div>
+                        <div>
+                            <input type="email" name="username" id="username" placeholder="Enter your email here" autoFocus required 
+                                value={email} onChange={(e) => setEmail(e.target.value)}
+                            />
+                        </div>
+                        <br />
 
-                    <div>
-                        <label htmlFor="password">Password</label>
-                    </div>
-                    <div>
-                        <input type="password" name="password" id="password" placeholder="Enter your password here" required 
-                            value={password} onChange={(e) => setPassword(e.target.value)}
-                        />
-                    </div>
-                    <br />
+                        <div>
+                            <label htmlFor="password">Password</label>
+                        </div>
+                        <div>
+                            <input type="password" name="password" id="password" placeholder="Enter your password here" required 
+                                value={password} onChange={(e) => setPassword(e.target.value)}
+                            />
+                        </div>
+                        <br />
 
-                    <div>
-                        <button type="submit" className="button">Login</button>
-                    </div>
-                    <br />
+                        <div>
+                            <button type="submit" className="button">Login</button>
+                        </div>
+                        <br />
 
-                    
-                </form>
+                        
+                    </form>
+                </div>
             </div>
         </>
     );

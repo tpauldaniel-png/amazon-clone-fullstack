@@ -19,11 +19,13 @@ input {
 
 h1 {
     padding-bottom: 15px;
+    color: white;
+    font-size: 40px;
 }
 
 
 .amazon-header {
-    background-color: black;
+    
     text-align: center;
 
     position: fixed;
@@ -45,6 +47,10 @@ h1 {
     width: 500px;
     height: 500px;
     margin: auto;
+    background-color: rgba(0, 0, 0, 0.355);
+    font-size: 15px;
+    font-weight: bolder;
+    color: whitesmoke;
     
 }
 
@@ -55,10 +61,24 @@ h1 {
     background-color: rgba(217, 217, 35, 0.978);
     border: none;
     border-radius: 5px;
+    font-size: 15px;
     
 }
 
 .button:hover {
     background-color: rgba(194, 178, 3, 0.956);
     cursor: pointer;
+}
+
+.bg {
+    background-image: url('../assets/amazon-intro.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

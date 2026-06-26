@@ -9,7 +9,7 @@
 
 .card {
     width: 300px;
-    background-color:#ff9900;
+    background-color:rgba(0, 0, 0, 0.47);
    
     display: flex;
     flex-direction: column;

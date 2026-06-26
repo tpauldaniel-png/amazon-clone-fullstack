@@ -11,6 +11,7 @@
     border: 2px solid rgba(191, 218, 218, 0.847);
     padding: 15px;
     margin: 15px;
+    color: white;
     
 
     display: grid;
@@ -18,6 +19,7 @@
     column-gap: 10px;
 
     font-size: 1.2rem;
+    background-color: rgba(0, 0, 0, 0.397);
 }
 
 .order-item-grid {
@@ -77,5 +79,5 @@
 .heading {
     font-weight:bolder;
     font-size: 18px;
-    color: #8a500d;
+    color:rgb(228, 221, 126);
 }

@@ -16,3 +16,14 @@
   padding: 20px;
   margin-top: 70px;
 }
+
+.background {
+  background-image: url('../assets/back-bg.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 100vh;
+
+    
+}

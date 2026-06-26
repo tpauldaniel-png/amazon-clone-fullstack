@@ -16,6 +16,8 @@
     display: grid;
     grid-template-columns: 300px 1fr;
     column-gap: 10px;
+    background-color:rgba(0, 0, 0, 0.449);
+    color: whitesmoke;
 }
 
 .product-pic {
@@ -29,6 +31,7 @@
 .product-name {
     font-weight:bolder;
     font-size: 18px;
+    color: white;
 }
 
 .product-price {
