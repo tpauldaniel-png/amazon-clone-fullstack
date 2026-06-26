@@ -5,6 +5,7 @@ from app.models import models_users, models_products, models_orders
 from app import oauth2
 from sqlalchemy import func
 from app.schemas.products import ProductCreate, ProductCreateResponse, ProductsResponse
+from uuid import UUID
 
 router = APIRouter(
     prefix = "/admin",
@@ -59,3 +60,42 @@ def admin_get_products(db: Session = Depends(get_db), current_admin = Depends(oa
     }
     
     
+@router.get("/get_orders")
+def admin_get_orders(db: Session = Depends(get_db), current_admin = Depends(oauth2.get_current_admin)):
+
+    orders = (db.query(models_orders.Order, models_users.User).join(models_users.User, models_orders.Order.user_id == models_users.User.user_id).all())
+
+    order_list = []
+
+    for order, user in orders:
+        order_list.append({
+            "order_id" : order.order_id,
+            "total_price" : order.total_price,
+            "created_at": order.created_at,
+            "customer_name": user.first_name + " " + user.last_name,
+            "customer_email" : user.email
+        })
+
+    return {
+        "orders" : order_list
+    }
+
+@router.get("/get_order_items/{order_id}")
+def admin_get_order_items(order_id : UUID, db: Session = Depends(get_db), current_admin = Depends(oauth2.get_current_admin)):
+
+    order_items = db.query(models_orders.OrderItem, models_products.Product).join(models_products.Product, models_orders.OrderItem.product_id == models_products.Product.id).filter(models_orders.OrderItem.order_id == order_id).all()
+        
+    item_list = []
+
+    for order_item, product in order_items:
+        item_list.append({
+            "price_at_purchase" : order_item.price_at_purchase,
+            "quantity" : order_item.quantity,
+            "product_name" : product.name,
+            "image" : product.image
+        })
+
+    return {
+        "order_items" : item_list
+    }
+

@@ -3,7 +3,7 @@ import {LoginPage} from './pages/login';
 import {AdminDashboard} from './pages/AdminDashboard';
 import {AddProduct} from './pages/AddProduct';
 import {UpdateProduct} from './pages/UpdateProduct';
-import {DeleteProduct} from './pages/DeleteProduct';
+
 import {ProductList} from './pages/ProductList';
 import {OrderList} from './pages/OrderList';
 import {UserList} from './pages/UserList';

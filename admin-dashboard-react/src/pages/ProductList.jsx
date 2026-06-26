@@ -1,4 +1,4 @@
-import {useState, useEffect, useRef} from 'react';
+import {useState, useEffect} from 'react';
 import '../styles/productList.css';
 
 
@@ -19,7 +19,7 @@ export function ProductList() {
                 });
 
                 if (!response.ok) {
-                    throw new Error("failed to fetch user");
+                    throw new Error("failed to fetch product");
                 }
 
                 const data = await response.json();

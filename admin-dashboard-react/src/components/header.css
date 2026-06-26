@@ -9,9 +9,22 @@
     left: 0;
     right: 0;
     height: 70px;
+
+    
 }
 
 .amazon-logo {
     width: 150px;
     padding-top: 15px;
+}
+
+.logout-link {
+    color: whitesmoke;
+    text-decoration: none;
+    font-size: 20px;
+
+    position: fixed;
+    top: 20px;
+    right: 50px;
+    
 }
