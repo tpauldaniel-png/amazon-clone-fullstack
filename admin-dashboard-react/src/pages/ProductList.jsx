@@ -1,4 +1,5 @@
 import {useState, useEffect} from 'react';
+import {Link} from 'react-router-dom';
 import '../styles/productList.css';
 
 
@@ -53,8 +54,12 @@ export function ProductList() {
                                     </div>
                                 </div>
                                 <div className="update-container">
-                                    <div>Edit</div>
-                                    <div>Delete</div>
+                                    <div>
+                                        <Link to={`/admin/updateProduct/${product.id}`} className="edit-link">Edit</Link>
+                                    </div>
+                                    <div>
+                                        Delete
+                                    </div>
                                 </div>
 
                             </div>

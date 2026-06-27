@@ -1,0 +1,33 @@
+label {
+    font-size: 18px;
+}
+
+
+.update-product-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 600px;
+    height: 600px;
+    margin: auto;
+    background-color:rgba(0, 0, 0, 0.416);
+    color: white;
+}
+
+.update-button {
+    width: 100%;
+    padding: 10px;
+    background-color: rgba(217, 217, 35, 0.978);
+    border: none;
+    border-radius: 5px;
+}
+
+.update-button:hover {
+    background-color: rgba(194, 178, 3, 0.956);
+    cursor: pointer;
+}
+
+.update-product-heading {
+    color: white;
+}
+

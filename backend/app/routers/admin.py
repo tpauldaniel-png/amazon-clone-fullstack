@@ -4,7 +4,7 @@ from app.database import get_db
 from app.models import models_users, models_products, models_orders
 from app import oauth2
 from sqlalchemy import func
-from app.schemas.products import ProductCreate, ProductCreateResponse, ProductsResponse
+from app.schemas.products import ProductCreate, ProductCreateResponse, ProductsResponse, ProductOut
 from app.schemas.users import UsersResponse
 from uuid import UUID
 
@@ -112,3 +112,37 @@ def admin_get_users(db: Session = Depends(get_db), current_admin = Depends(oauth
     return {
         "users" : users
     }
+
+
+@router.put("/update_product/{product_id}")
+def admin_update_product(product_id: UUID, data: ProductCreate, db: Session = Depends(get_db), current_admin = Depends(oauth2.get_current_admin)):
+    try: 
+        product_query = db.query(models_products.Product).filter(models_products.Product.id == product_id)
+
+        product_to_update = product_query.first()
+
+        if product_to_update is None:
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Product with {product_id} does not exist")
+        
+        product_dict = data.model_dump()
+
+        product_query.update(product_dict, synchronize_session=False)
+
+        db.commit()
+
+        return {
+            "message": "updated product successfully"
+        }
+
+    
+    except Exception:
+        db.rollback()
+        raise
+    
+
+@router.get("/get_product/{product_id}", response_model=ProductOut)
+def admin_get_one_product(product_id: UUID, db: Session = Depends(get_db), current_admin = Depends(oauth2.get_current_admin)):
+
+    product = db.query(models_products.Product).filter(models_products.Product.id == product_id).first()
+
+    return product
