@@ -60,7 +60,7 @@ export function LoginPage() {
                 <div className="form-container">
 
                     <form id="custom-login-form" onSubmit={handleSubmit}>
-                        <h1>Admin Login</h1>
+                        <h1 className="admin-heading">Admin Login</h1>
 
                         <div>
                             <label htmlFor="username">Email</label>

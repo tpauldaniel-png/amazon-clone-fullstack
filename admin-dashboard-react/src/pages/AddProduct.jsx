@@ -50,7 +50,7 @@ export function AddProduct() {
         <>
             <div className="add-product-form">
                 <form onSubmit={handleSubmit}>
-                    <h1>ADD PRODUCT</h1>
+                    <h1 className="addproduct-heading">ADD PRODUCT</h1>
 
                     <div>
                         <label htmlFor="name">Product Name</label>

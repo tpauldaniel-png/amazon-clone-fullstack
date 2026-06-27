@@ -5,6 +5,7 @@ from app.models import models_users, models_products, models_orders
 from app import oauth2
 from sqlalchemy import func
 from app.schemas.products import ProductCreate, ProductCreateResponse, ProductsResponse
+from app.schemas.users import UsersResponse
 from uuid import UUID
 
 router = APIRouter(
@@ -80,6 +81,8 @@ def admin_get_orders(db: Session = Depends(get_db), current_admin = Depends(oaut
         "orders" : order_list
     }
 
+
+
 @router.get("/get_order_items/{order_id}")
 def admin_get_order_items(order_id : UUID, db: Session = Depends(get_db), current_admin = Depends(oauth2.get_current_admin)):
 
@@ -99,3 +102,13 @@ def admin_get_order_items(order_id : UUID, db: Session = Depends(get_db), curren
         "order_items" : item_list
     }
 
+
+
+@router.get("/get_users", response_model=UsersResponse)
+def admin_get_users(db: Session = Depends(get_db), current_admin = Depends(oauth2.get_current_admin)):
+
+    users = db.query(models_users.User).all()
+
+    return {
+        "users" : users
+    }
