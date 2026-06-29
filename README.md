@@ -9,31 +9,18 @@ The customer-facing frontend is built using HTML, CSS, and JavaScript. The admin
 
 ## Features
 
-- Product listing from backend database
-- User registration and login
-- Password hashing
-- JWT authentication
-- Protected user routes
-- Add to cart using backend API
-- Update cart quantity
-- Update delivery option
-- Delete cart items
-- Checkout page using backend cart
-- Place order
-- Order history page
-- PostgreSQL database integration
+## Features
 
-- React-based admin dashboard
-- Admin login with JWT authentication
-- Role-based admin access
-- Admin dashboard statistics
-- Admin product management
-- Add products from admin panel
-- View product list in admin panel
-- Update product details
-- View customer orders with user details
-- View order items for each order
-- View registered users
+- Customer authentication with JWT and password hashing
+- FastAPI endpoints fetch and serve PostgreSQL data to both the customer frontend and React admin dashboard
+- Product listing from PostgreSQL database
+- Cart management: add, update quantity, update delivery option, and delete items
+- Checkout flow with order creation and order history
+- React-based admin dashboard with role-based access
+- Admin product management: add, view, and update products
+- Admin order management: view orders, customer details, and order items
+- Admin user listing and dashboard statistics
+
 
 
 ## Tech Stack
