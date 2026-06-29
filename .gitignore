@@ -1,8 +1,19 @@
-venv/
+
+
+
+# Python
 backend/venv/
 __pycache__/
 *.pyc
 .env
+
+# Node / React
+admin-dashboard-react/node_modules/
+admin-dashboard-react/dist/
+
+# VS Code
 .vscode/
-node_modules/
-*.log
+
+# OS
+.DS_Store
+Thumbs.db

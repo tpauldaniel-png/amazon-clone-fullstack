@@ -55,11 +55,9 @@ export function ProductList() {
                                 </div>
                                 <div className="update-container">
                                     <div>
-                                        <Link to={`/admin/updateProduct/${product.id}`} className="edit-link">Edit</Link>
+                                        <Link to={`/admin/updateProduct/${product.id}`} className="edit-link">Edit Product</Link>
                                     </div>
-                                    <div>
-                                        Delete
-                                    </div>
+                                    
                                 </div>
 
                             </div>
