@@ -7,7 +7,7 @@ This project is a full-stack Amazon-inspired e-commerce application featuring us
 
 The customer-facing frontend is built using HTML, CSS, and JavaScript. The admin dashboard is built with React.js. The backend is built with FastAPI and PostgreSQL.
 
-## Features
+
 
 ## Features
 
